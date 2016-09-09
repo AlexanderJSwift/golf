@@ -6,14 +6,17 @@ import { ListGroup, Alert } from 'react-bootstrap';
 import { Player } from './player.js';
 
 export const PlayersList = ({ players }) => (
+
     players.length > 0 ? <ListGroup className="documents-list">
-        {players.map((doc) => (
-            <Player key={ doc._id } document={ doc } />
+        {players.map((player) => (
+            <Player key={ player._id } player={ player } />
         ))}
     </ListGroup> :
-        <Alert bsStyle="warning">No courses yet.</Alert>
+        <Alert bsStyle="warning">No players yet.</Alert>
 );
 
+console.log(typeof (PlayersList));
+
 PlayersList.propTypes = {
-    documents: React.PropTypes.array,
+    players: React.PropTypes.array,
 };

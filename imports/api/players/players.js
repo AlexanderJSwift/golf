@@ -9,32 +9,37 @@ import { Factory } from 'meteor/dburles:factory';
 export const Players = new Mongo.Collection('Players');
 
 Players.allow({
-    insert: () => false,
-    update: () => false,
-    remove: () => false,
-});
-
-Players.deny({
     insert: () => true,
     update: () => true,
     remove: () => true,
 });
 
+Players.deny({
+    insert: () => false,
+    update: () => false,
+    remove: () => false,
+});
+
 Players.schema = new SimpleSchema({
-    title:{
-        type: String,
-        label:'Course Name'
+    name:{
+        type: 'String',
+        label:'Player Name'
     },
     image:{
         type: String,
         label: 'Image of player',
         optional: true
+    },
+    handicap: {
+        type: Number,
+        label: 'Player Handicap',
+        optional:true
     }
 });
 
 Players.attachSchema(Players.schema);
 
 Factory.define('players', Players, {
-    title: ()=> faker.hacker.phrase(),
+    name: ()=> faker.hacker.phrase(),
     image: ()=> faker.hacker.phrase(),
 });

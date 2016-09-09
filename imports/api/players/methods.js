@@ -4,47 +4,66 @@
 import { Players } from './players';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
-import { rateLimit } from '../../modules/rate-limit.js';
-export const insertPlayer = new ValidatedMethod({
-    name: 'player.insert',
-    validate: new SimpleSchema({
-        title: {type: String},
-        image: {type: String, optional:true}
-    }).validator(),
-    run(course) {
-        Players.insert(course)
-    }
+import { getInputValue } from '../../modules/get-input-value';
+
+let component;
+
+const getPlayerData = () => ({
+    name: getInputValue(component.refs.name),
+    image: getInputValue(component.refs.image),
+    handicap: getInputValue(component.refs.handicap)
+
 });
 
-export const updatePlayer = new ValidatedMethod({
-    name: 'player.update',
-    validate: new SimpleSchema({
-        _id: {type: String},
-        'update.title': {type: String, optional: true},
-        'update.image': {type: String, optional: true}
-    }).validator(),
-    run({_id, update}) {
-        Players.update(_id, {$set: update});
-    }
-});
+const addPlayer = () => {
+    const player = getPlayerData();
 
-export const removePlayer = new ValidatedMethod({
-    name: 'player.remove',
-    validate: new SimpleSchema({
-        _id: { type: String },
-    }).validator(),
-    run({ _id }) {
-        Players.remove(_id);
-    },
-});
+    Players.insert(player, (error) => {
+        if (error) {
+            Bert.alert(error.reason, 'danger');
+        } else {
 
+            Bert.alert('Player Added', 'success');
+        }
+    });
+};
 
-rateLimit({
-    methods: [
-        insertPlayer,
-        updatePlayer,
-        removePlayer,
-    ],
-    limit: 5,
-    timeRange: 1000,
-});
+export const removePlayer = (_id) => {
+
+    Players.remove(_id, (error) => {
+        if (error) {
+            Bert.alert(error.reason, 'danger');
+        } else {
+
+            Bert.alert('Player Removed', 'success');
+        }
+    });
+};
+
+const validate = () => {
+    $(component.refs.addPlayer).validate({
+        rules: {
+            name: {
+                required: true,
+            },
+            image: {
+                required: false,
+            },
+            handicap: {
+                required: false,
+            }
+
+        },
+        messages: {
+            name: {
+                required: 'Name?',
+            },
+        },
+        submitHandler() { addPlayer(); },
+    });
+};
+
+export const handleAddPlayer = (options) => {
+    component = options.component;
+    validate();
+};

@@ -11,6 +11,7 @@ const composer = (params, onData) => {
     const subscription = Meteor.subscribe('players');
     if (subscription.ready()) {
         const players = Players.find().fetch();
+        console.log(players);
         onData(null, { players });
     }
 };

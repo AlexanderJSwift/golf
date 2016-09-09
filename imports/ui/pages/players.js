@@ -5,14 +5,13 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import PlayerList from '../containers/players-list';
-import { PlayerForm } from '../components/players/add-player.js';
+import { AddPlayer } from '../components/players/add-player.js';
 
 export const Players = () => (
     <Row>
         <Col xs={ 12 }>
             <h4 className="page-header">Players</h4>
-            <div id-="content">
-            <PlayerForm />
+            <AddPlayer />
             <PlayerList />
 
         </Col>
