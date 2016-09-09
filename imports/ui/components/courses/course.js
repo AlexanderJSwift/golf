@@ -3,6 +3,9 @@ import { Row, Col, ListGroupItem, FormControl, Button } from 'react-bootstrap';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { updateCourse, removeCourse } from '../../../api/courses/methods.js';
 
+//TODO:REFACTOR TO USE ES6
+
+
 const handleUpdateCourse = (documentId, event) => {
     const title = event.target.value.trim();
     if (title !== '' && event.keyCode === 13) {

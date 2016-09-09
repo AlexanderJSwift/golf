@@ -14,6 +14,9 @@ export class Player extends React.Component {
         this.handicap = this.props.player.handicap;
 
     }
+    
+    
+    //TODO: FIX REMOVE PLAYER
 
 
     componentDidMount() {
