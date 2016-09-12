@@ -5,7 +5,7 @@ import { Meteor } from 'meteor/meteor';
 import { assert } from 'meteor/practicalmeteor:chai';
 import { resetDatabase } from 'meteor/xolvio:cleaner';
 import { Factory } from 'meteor/dburles:factory';
-import { Players } from './players.js';
+import { Players } from './seasons.js';
 import { insertPlayer, updatePlayer, removePlayer} from './methods.js';
 
 describe('Players methods', function () {

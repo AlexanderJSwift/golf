@@ -1,24 +1,22 @@
 /**
  * Created by alexs on 08-Sep-16.
  */
-import { Players } from './players';
+import { Seasons } from './seasons';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { getInputValue } from '../../modules/get-input-value';
 
 let component;
 
-const getPlayerData = () => ({
+const getSeasonData = () => ({
     name: getInputValue(component.refs.name),
-    image: getInputValue(component.refs.image),
-    handicap: getInputValue(component.refs.handicap)
 
 });
 
-const addPlayer = () => {
-    const player = getPlayerData();
+const addSeason = () => {
+    const season= getSeasonData();
 
-    Players.insert(player, (error) => {
+    Seasons.insert(season, (error) => {
         if (error) {
             Bert.alert(error.reason, 'danger');
         } else {
@@ -28,50 +26,43 @@ const addPlayer = () => {
     });
 };
 
-export const removePlayer = new ValidatedMethod({
-    name: 'Season.methods.removePlayer',
+export const removeSeason = new ValidatedMethod({
+    name: 'Season.methods.removeSeason',
     validate: new SimpleSchema({
-            playerId: {type:String}
+            seasonId: {type:String}
         }).validator(),
-    run( { playerId } ) {
+    run( { seasonId } ) {
         if (!this.userId) {
             throw new Meteor.Error('unauthorized', 'You must be logged in to add a new movie!');
         }
 
-        Players.remove({_id: playerId});
+        Seasons.remove({_id: seasonId});
     },
 });
 
 const validate = () => {
-    $(component.refs.addPlayer).validate({
+    $(component.refs.addSeason).validate({
         rules: {
             name: {
                 required: true,
             },
-            image: {
-                required: false,
-            },
-            handicap: {
-                required: false,
-            }
-
         },
         messages: {
             name: {
                 required: 'Name?',
             },
         },
-        submitHandler() { addPlayer(); },
+        submitHandler() { addSeason(); },
     });
 };
 
-export const handleAddPlayer = (options) => {
+export const handleAddSeason= (options) => {
     component = options.component;
     console.log(component);
     validate();
 };
 
-export const handleRemovePlayer = (options) => {
+export const handleRemoveSeason = (options) => {
     component = options.component;
-    removePlayer(component._id);
+    removeSeason(component._id);
 }

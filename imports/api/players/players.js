@@ -23,7 +23,7 @@ Players.deny({
 Players.schema = new SimpleSchema({
     name:{
         type: 'String',
-        label:'Player Name'
+        label:'Season Name'
     },
     image:{
         type: String,
@@ -32,7 +32,7 @@ Players.schema = new SimpleSchema({
     },
     handicap: {
         type: Number,
-        label: 'Player Handicap',
+        label: 'Season Handicap',
         optional:true
     }
 });
