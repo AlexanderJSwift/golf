@@ -1,7 +1,7 @@
 /**
  * Created by alexs on 08-Sep-16.
  */
-import faker from 'faker';
+
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Factory } from 'meteor/dburles:factory';
@@ -29,6 +29,3 @@ Courses.schema = new SimpleSchema({
 
 Courses.attachSchema(Courses.schema);
 
-Factory.define('courses', Courses, {
-    title: ()=> faker.hacker.phrase(),
-});

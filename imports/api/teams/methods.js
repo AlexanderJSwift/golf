@@ -1,7 +1,7 @@
 /**
  * Created by alexs on 08-Sep-16.
  */
-import { Players } from './players';
+import { Players } from './teams';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { getInputValue } from '../../modules/get-input-value';

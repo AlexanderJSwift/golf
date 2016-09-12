@@ -1,7 +1,7 @@
 /**
  * Created by alexs on 08-Sep-16.
  */
-import faker from 'faker';
+
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Factory } from 'meteor/dburles:factory';
@@ -38,8 +38,3 @@ Players.schema = new SimpleSchema({
 });
 
 Players.attachSchema(Players.schema);
-
-Factory.define('players', Players, {
-    name: ()=> faker.hacker.phrase(),
-    image: ()=> faker.hacker.phrase(),
-});
