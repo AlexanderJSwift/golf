@@ -23,7 +23,7 @@ describe('Players methods', function () {
         assert.equal(getPlayer.image, 'This is the image');
     });
 
-    it('updates a document in the Season collection', function () {
+    it('updates a document in the Team collection', function () {
         const { _id } = Factory.create('player');
 
         updatePlayer.call({
@@ -39,7 +39,7 @@ describe('Players methods', function () {
         assert.equal(getPlayer.image, 'This is the image');
     });
 
-    it('removes a document from the Season collection', function () {
+    it('removes a document from the Team collection', function () {
         const { _id } = Factory.create('player');
         removePlayer.call({ _id });
         const getPlayer = Players.findOne(_id);

@@ -6,3 +6,5 @@ import '../../api/players/server/publications.js';
 import '../../api/players/methods.js';
 import '../../api/seasons/server/publications.js';
 import '../../api/seasons/methods.js';
+import '../../api/teams/server/publications.js';
+import '../../api/teams/methods.js';

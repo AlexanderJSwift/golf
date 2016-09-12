@@ -1,77 +1,70 @@
 /**
  * Created by alexs on 08-Sep-16.
  */
-import { Players } from './teams';
+import { Teams } from './teams';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { getInputValue } from '../../modules/get-input-value';
 
 let component;
 
-const getPlayerData = () => ({
+
+const getTeamData = () => ({
     name: getInputValue(component.refs.name),
-    image: getInputValue(component.refs.image),
-    handicap: getInputValue(component.refs.handicap)
+
 
 });
 
-const addPlayer = () => {
-    const player = getPlayerData();
+const addTeam = () => {
+    const team = getTeamData();
 
-    Players.insert(player, (error) => {
+    Teams.insert(team, (error) => {
         if (error) {
             Bert.alert(error.reason, 'danger');
         } else {
 
-            Bert.alert('Season Added', 'success');
+            Bert.alert('Team Added', 'success');
         }
     });
 };
 
-export const removePlayer = new ValidatedMethod({
-    name: 'Season.methods.removePlayer',
+export const removeTeam = new ValidatedMethod({
+    name: 'Team.methods.removeTeam',
     validate: new SimpleSchema({
-            playerId: {type:String}
+            teamId: {type:String}
         }).validator(),
-    run( { playerId } ) {
+    run( { teamId } ) {
         if (!this.userId) {
             throw new Meteor.Error('unauthorized', 'You must be logged in to add a new movie!');
         }
 
-        Players.remove({_id: playerId});
+        Teams.remove({_id: teamId});
     },
 });
 
 const validate = () => {
-    $(component.refs.addPlayer).validate({
+    $(component.refs.addTeam).validate({
         rules: {
             name: {
                 required: true,
             },
-            image: {
-                required: false,
-            },
-            handicap: {
-                required: false,
-            }
-
         },
         messages: {
             name: {
                 required: 'Name?',
             },
         },
-        submitHandler() { addPlayer(); },
+        submitHandler() { addTeam(); },
     });
 };
 
-export const handleAddPlayer = (options) => {
+export const handleAddTeam = (options) => {
     component = options.component;
     console.log(component);
     validate();
 };
 
-export const handleRemovePlayer = (options) => {
+export const handleRemoveTeam = (options) => {
     component = options.component;
-    removePlayer(component._id);
+    removeTeam(component._id);
 }

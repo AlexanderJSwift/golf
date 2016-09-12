@@ -23,13 +23,13 @@ const addPlayer = () => {
             Bert.alert(error.reason, 'danger');
         } else {
 
-            Bert.alert('Season Added', 'success');
+            Bert.alert('Team Added', 'success');
         }
     });
 };
 
 export const removePlayer = new ValidatedMethod({
-    name: 'Season.methods.removePlayer',
+    name: 'Player.methods.removePlayer',
     validate: new SimpleSchema({
             playerId: {type:String}
         }).validator(),
@@ -71,7 +71,3 @@ export const handleAddPlayer = (options) => {
     validate();
 };
 
-export const handleRemovePlayer = (options) => {
-    component = options.component;
-    removePlayer(component._id);
-}

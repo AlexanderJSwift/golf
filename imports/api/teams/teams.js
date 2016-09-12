@@ -8,7 +8,7 @@ import { Factory } from 'meteor/dburles:factory';
 import { Players } from '../players/players';
 import { Seasons } from '../seasons/seasons';
 
-export const Teams = new Mongo.Collection('Seasons');
+export const Teams = new Mongo.Collection('Teams');
 
 Teams.allow({
     insert: () => true,
@@ -28,10 +28,14 @@ Teams.schema = new SimpleSchema({
         label:'Team Name'
     },
     players:{
-        type:Players
+        type:[String],
+        optional:true
+
     },
     season:{
-        type:Seasons
+        type:'String',
+        optional:true
+
     }
 });
 

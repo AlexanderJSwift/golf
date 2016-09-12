@@ -21,13 +21,13 @@ const addSeason = () => {
             Bert.alert(error.reason, 'danger');
         } else {
 
-            Bert.alert('Season Added', 'success');
+            Bert.alert('Team Added', 'success');
         }
     });
 };
 
 export const removeSeason = new ValidatedMethod({
-    name: 'Season.methods.removeSeason',
+    name: 'Team.methods.removeSeason',
     validate: new SimpleSchema({
             seasonId: {type:String}
         }).validator(),
