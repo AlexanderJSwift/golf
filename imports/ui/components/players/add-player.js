@@ -12,7 +12,6 @@ export class AddPlayer extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-
     }
 
     render() {
@@ -49,7 +48,7 @@ export class AddPlayer extends React.Component {
                                 <FormGroup>
                                     <ControlLabel>Handicap</ControlLabel>
                                     <FormControl
-                                        type="text"
+                                        type="number"
                                         ref="handicap"
                                         name="name"
                                         placeholder="Handicap"
@@ -58,7 +57,7 @@ export class AddPlayer extends React.Component {
                             </Row>
                         </Col>
                     </Row>
-                    <Button type="submit" bsStyle="success">Sign Up</Button>
+                    <Button type="submit" bsStyle="success">Add Player</Button>
                 </form>
             </Col>
         </Row>;

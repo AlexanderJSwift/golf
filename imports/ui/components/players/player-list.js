@@ -15,8 +15,6 @@ export const PlayersList = ({ players }) => (
         <Alert bsStyle="warning">No players yet.</Alert>
 );
 
-console.log(typeof (PlayersList));
-
 PlayersList.propTypes = {
     players: React.PropTypes.array,
 };

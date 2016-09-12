@@ -28,17 +28,19 @@ const addPlayer = () => {
     });
 };
 
-export const removePlayer = (_id) => {
-
-    Players.remove(_id, (error) => {
-        if (error) {
-            Bert.alert(error.reason, 'danger');
-        } else {
-
-            Bert.alert('Player Removed', 'success');
+export const removePlayer = new ValidatedMethod({
+    name: 'Player.methods.removePlayer',
+    validate: new SimpleSchema({
+            playerId: {type:String}
+        }).validator(),
+    run( { playerId } ) {
+        if (!this.userId) {
+            throw new Meteor.Error('unauthorized', 'You must be logged in to add a new movie!');
         }
-    });
-};
+
+        Players.remove({_id: playerId});
+    },
+});
 
 const validate = () => {
     $(component.refs.addPlayer).validate({
@@ -65,5 +67,11 @@ const validate = () => {
 
 export const handleAddPlayer = (options) => {
     component = options.component;
+    console.log(component);
     validate();
 };
+
+export const handleRemovePlayer = (options) => {
+    component = options.component;
+    removePlayer(component._id);
+}
