@@ -10,6 +10,7 @@ let component;
 
 const getSeasonData = () => ({
     name: getInputValue(component.refs.name),
+    startDate: getInputValue(component.refs.startDate)
 
 });
 
@@ -27,7 +28,7 @@ const addSeason = () => {
 };
 
 export const removeSeason = new ValidatedMethod({
-    name: 'Team.methods.removeSeason',
+    name: 'Season.methods.removeSeason',
     validate: new SimpleSchema({
             seasonId: {type:String}
         }).validator(),
@@ -46,11 +47,17 @@ const validate = () => {
             name: {
                 required: true,
             },
+            startDate:{
+                required:true
+            }
         },
         messages: {
             name: {
                 required: 'Name?',
             },
+            startDate:{
+                required: 'Please enter a start date'
+            }
         },
         submitHandler() { addSeason(); },
     });

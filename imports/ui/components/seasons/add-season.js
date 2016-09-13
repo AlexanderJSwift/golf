@@ -29,6 +29,12 @@ export class AddSeason extends React.Component {
                                         name="name"
                                         placeholder="Season Name"
                                     />
+                                    <FormControl
+                                        type="date"
+                                        ref="startDate"
+                                        name="name"
+                                        placeholder="Start Date"
+                                    />
                                 </FormGroup>
                             </Row>
                         </Col>

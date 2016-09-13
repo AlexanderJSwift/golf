@@ -10,6 +10,7 @@ import { Seasons } from '../../ui/pages/seasons';
 import { Teams } from '../../ui/pages/teams';
 import { Index } from '../../ui/pages/index';
 import { Login } from '../../ui/pages/login';
+import { Admin } from '../../ui/pages/admin';
 import { NotFound } from '../../ui/pages/not-found';
 import { RecoverPassword } from '../../ui/pages/recover-password';
 import { ResetPassword } from '../../ui/pages/reset-password';
@@ -34,6 +35,7 @@ Meteor.startup(() => {
         <Route name="players" path="/players" component={ Players } onEnter={ requireAuth } />
         <Route name="seasons" path="/seasons" component={ Seasons } onEnter={ requireAuth } />
         <Route name="teams" path="/teams" component={ Teams } onEnter={ requireAuth } />
+        <Route name="admin" path="/admin" component={ Admin } onEnter={ requireAuth } />
         <Route name="login" path="/login" component={ Login } />
         <Route name="recover-password" path="/recover-password" component={ RecoverPassword } />
         <Route name="reset-password" path="/reset-password/:token" component={ ResetPassword } />

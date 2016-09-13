@@ -26,6 +26,10 @@ Seasons.schema = new SimpleSchema({
         type: 'String',
         label:'Season Name'
     },
+    startDate:{
+        type:'Date',
+        label:'Start Date'
+    }
 
 });
 
