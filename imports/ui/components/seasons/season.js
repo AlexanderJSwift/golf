@@ -39,6 +39,7 @@ export class Season extends React.Component {
                         defaultValue={ this.name }
 
                     />
+
                 </Col>
                 <Button
                     bsStyle="danger"
